@@ -24,9 +24,34 @@ struct ContentView: View {
 }
 
 struct InicioSesionView: View {
+    @State var correo = ""
+    @State var password = ""
+    
     var body: some View{
-        VStack{
-            Text("inicio")
+        ScrollView {
+            VStack(alignment: .leading){
+                Text("Correo electrónico").foregroundColor(Color("Dark-Cian"))
+                ZStack(alignment: .leading){
+                    
+                    if correo.isEmpty{
+                        Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
+                    }
+                    TextField("", text: $correo)
+                }
+                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
+                
+                ZStack(alignment: .leading){
+                    
+                    if password.isEmpty{
+                        Text("Escribe tu contraseña").font(.caption).foregroundColor(.gray)
+                    }
+                    SecureField("", text: $password)
+                }
+                Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
+            
+            }.padding(.horizontal, 77.0)
+            
+            
         }
     }
 }
