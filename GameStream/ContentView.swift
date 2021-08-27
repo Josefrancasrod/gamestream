@@ -40,6 +40,7 @@ struct InicioSesionView: View {
                 }
                 Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
                 
+                Text("Contraseña").foregroundColor(.white)
                 ZStack(alignment: .leading){
                     
                     if password.isEmpty{
@@ -48,12 +49,30 @@ struct InicioSesionView: View {
                     SecureField("", text: $password)
                 }
                 Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
-            
+                
+                Text("¿Olvidaste tu contraseña?").font(.footnote).frame(width: 300, alignment: .trailing).foregroundColor(Color("Dark-Cian")).padding(.bottom)
+                Button(action: iniciarSesion, label: {
+                    Text("INICIAR SESIÓN").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).overlay(RoundedRectangle(cornerRadius: 6.0).stroke(Color("Dark-Cian"),lineWidth: 3.0).shadow(color: .white, radius: 6))
+                }).padding(.bottom, 50)
+                
+                VStack{
+                Text("Inicia sesión con redes sociales").foregroundColor(.white).padding(.bottom, 10)
+                HStack{
+                    Text("Facebook").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("Blue-Grey")))
+                    Text("Twitter").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("Blue-Grey")))
+                    
+                }
+                }
+                
             }.padding(.horizontal, 77.0)
             
             
         }
     }
+}
+
+func iniciarSesion(){
+    print("Estoy iniciando sesión")
 }
 
 struct RegistroView: View {
