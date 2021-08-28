@@ -56,12 +56,12 @@ struct InicioSesionView: View {
                 }).padding(.bottom, 50)
                 
                 VStack{
-                Text("Inicia sesión con redes sociales").foregroundColor(.white).padding(.bottom, 10)
-                HStack{
-                    Text("Facebook").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("Blue-Grey")))
-                    Text("Twitter").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("Blue-Grey")))
-                    
-                }
+                    Text("Inicia sesión con redes sociales").foregroundColor(.white).padding(.bottom, 10)
+                    HStack{
+                        Text("Facebook").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("Blue-Grey")))
+                        Text("Twitter").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("Blue-Grey")))
+                        
+                    }
                 }
                 
             }.padding(.horizontal, 77.0)
@@ -76,14 +76,85 @@ func iniciarSesion(){
 }
 
 struct RegistroView: View {
+    @State var correo = ""
+    @State var password = ""
+    @State var confirmarPassword = ""
     var body: some View{
+        ScrollView{
+            VStack (alignment: .center){
+                Text("Elige una foto de perfil").fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/).foregroundColor(.white)
+                Text("Puedes cambiar o elegirla más adelante").font(.footnote).fontWeight(.light).foregroundColor(.gray).padding(.bottom)
+                Button(action: tomarFoto, label: {
+                    ZStack {
+                        Image("30-swiftui-apps-ios-profile-pic").resizable().aspectRatio(contentMode: .fit).frame(width: 80, height: 80)
+                        Image(systemName: "camera").foregroundColor(.white)
+                    }
+                }).padding(.bottom)
+            }
+            VStack(alignment: .leading){
+                VStack(alignment: .leading){
+                    Text("Correo electrónico *").foregroundColor(Color("Dark-Cian"))
+                    ZStack(alignment: .leading){
+                        
+                        if correo.isEmpty{
+                            Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
+                        }
+                        TextField("", text: $correo)
+                    }
+                    Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
+                    
+                    Text("Contraseña").foregroundColor(.white)
+                    ZStack(alignment: .leading){
+                        
+                        if password.isEmpty{
+                            Text("Escribe tu contraseña").font(.caption).foregroundColor(.gray)
+                        }
+                        SecureField("", text: $password)
+                    }
+                    Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
+                    
+                    Text("Confirmar contraseña").foregroundColor(.white)
+                    ZStack(alignment: .leading){
+                        
+                        if confirmarPassword.isEmpty{
+                            Text("Escribe tu contraseña").font(.caption).foregroundColor(.gray)
+                        }
+                        SecureField("", text: $confirmarPassword)
+                    }
+                    Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom, 30).frame(width: 300, alignment: .trailing)
+                    
+                }
+                Button(action: registrarse, label: {
+                    Text("REGISTRATE").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).overlay(RoundedRectangle(cornerRadius: 6.0).stroke(Color("Dark-Cian"),lineWidth: 3.0).shadow(color: .white, radius: 6))
+                }).padding(.bottom, 50)
+                
+                VStack{
+                    Text("Registrate con redes sociales").foregroundColor(.white).padding(.bottom, 10)
+                    HStack{
+                        Text("Facebook").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("Blue-Grey")))
+                        Text("Twitter").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("Blue-Grey")))
+                        
+                    }
+                }
+                
+            }.padding(.horizontal, 77.0)
+        }
         VStack{
-            Text("Registro")
+            
         }
     }
 }
+
+func tomarFoto(){
+    print("Voy a tomar foto")
+}
+
+func registrarse() {
+    print("Te registraste")
+}
+
 struct InicioYRegistroView:View {
-    @State var tipoInicioSesion = true
+    @State var tipoInicioSesion = false
     
     var body: some View{
         VStack{
@@ -114,7 +185,7 @@ struct InicioYRegistroView:View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Image("04_swiftui-apps-ios-pantalla1").resizable()
+        Image("04_swiftui-apps-ios-pantalla2").resizable()
         ContentView()
     }
 }
