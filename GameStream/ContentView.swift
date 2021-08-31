@@ -9,16 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            Spacer()
-            //Color(.blue).ignoresSafeArea()
-            Color( red: 19/255, green: 30/255, blue: 60/255,opacity: 1.0  ).ignoresSafeArea()
-            VStack{
-                Image("04_swiftui-apps-ios-logo-name").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 42)
-                InicioYRegistroView()
-            }
-            
-            
+        NavigationView {
+            ZStack {
+                Spacer()
+                //Color(.blue).ignoresSafeArea()
+                Color( red: 19/255, green: 30/255, blue: 60/255,opacity: 1.0  ).ignoresSafeArea()
+                VStack{
+                    Image("04_swiftui-apps-ios-logo-name").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 42)
+                    InicioYRegistroView()
+                }
+                
+                
+            }.navigationBarHidden(true)
         }
     }
 }
@@ -26,6 +28,7 @@ struct ContentView: View {
 struct InicioSesionView: View {
     @State var correo = ""
     @State var password = ""
+    @State var isHomeActive = false
     
     var body: some View{
         ScrollView {
@@ -36,7 +39,7 @@ struct InicioSesionView: View {
                     if correo.isEmpty{
                         Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
                     }
-                    TextField("", text: $correo)
+                    TextField("", text: $correo).foregroundColor(.white)
                 }
                 Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
                 
@@ -46,7 +49,7 @@ struct InicioSesionView: View {
                     if password.isEmpty{
                         Text("Escribe tu contraseña").font(.caption).foregroundColor(.gray)
                     }
-                    SecureField("", text: $password)
+                    SecureField("", text: $password).foregroundColor(.white)
                 }
                 Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
                 
@@ -64,16 +67,25 @@ struct InicioSesionView: View {
                     }
                 }
                 
+                NavigationLink(
+                    destination: Home(),
+                    isActive: $isHomeActive,
+                    label: {
+                        EmptyView()
+                    })
+                
             }.padding(.horizontal, 77.0)
             
             
         }
     }
+    func iniciarSesion(){
+        print("Estoy iniciando sesión")
+        isHomeActive = true
+    }
 }
 
-func iniciarSesion(){
-    print("Estoy iniciando sesión")
-}
+
 
 struct RegistroView: View {
     @State var correo = ""
@@ -99,7 +111,7 @@ struct RegistroView: View {
                         if correo.isEmpty{
                             Text("ejemplo@gmail.com").font(.caption).foregroundColor(.gray)
                         }
-                        TextField("", text: $correo)
+                        TextField("", text: $correo).foregroundColor(.white)
                     }
                     Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
                     
@@ -109,7 +121,7 @@ struct RegistroView: View {
                         if password.isEmpty{
                             Text("Escribe tu contraseña").font(.caption).foregroundColor(.gray)
                         }
-                        SecureField("", text: $password)
+                        SecureField("", text: $password).foregroundColor(.white)
                     }
                     Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom)
                     
@@ -119,7 +131,7 @@ struct RegistroView: View {
                         if confirmarPassword.isEmpty{
                             Text("Escribe tu contraseña").font(.caption).foregroundColor(.gray)
                         }
-                        SecureField("", text: $confirmarPassword)
+                        SecureField("", text: $confirmarPassword).foregroundColor(.white)
                     }
                     Divider().frame(height: 1).background(Color("Dark-Cian")).padding(.bottom, 30).frame(width: 300, alignment: .trailing)
                     
@@ -154,7 +166,7 @@ func registrarse() {
 }
 
 struct InicioYRegistroView:View {
-    @State var tipoInicioSesion = false
+    @State var tipoInicioSesion = true
     
     var body: some View{
         VStack{
