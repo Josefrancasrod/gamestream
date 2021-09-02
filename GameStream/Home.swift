@@ -43,13 +43,31 @@ struct Home: View {
 }
 
 struct PantallaHome: View{
+    @State var textoBusqueda = ""
     var body: some View{
         ZStack{
             Color("Marine").ignoresSafeArea()
             VStack{
+                Image("04_swiftui-apps-ios-logo-name").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.horizontal, 11)
                 
+                HStack{
+                    Button(action: busqueda, label: {
+                        Image(systemName: "magnifyingglass").foregroundColor(textoBusqueda.isEmpty ? .yellow : Color("Dark-Cian"))
+                    })
+                    
+                    ZStack(alignment: .leading){
+                        if textoBusqueda.isEmpty {
+                            Text("Buscar un video").foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                        }
+                        TextField("", text: $textoBusqueda).foregroundColor(.white)
+                    }
+                }.padding([.top, .leading, .bottom], 11).background(Color("Blue-Grey")).clipShape(Capsule())
             }.padding(.horizontal, 10)
         }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
+    }
+    
+    func busqueda() {
+        print("El usuario esta busacando \(textoBusqueda)")
     }
 }
 
