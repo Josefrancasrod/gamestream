@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct Home: View {
     @State var tabSeleccionado: Int = 2
@@ -22,7 +23,7 @@ struct Home: View {
                 Text("Juegos")
             }.tag(1)
             
-           PantallaHome().tabItem {
+            PantallaHome().tabItem {
                 Image(systemName: "house")
                 Text("Home")
             }.tag(2)
@@ -45,8 +46,10 @@ struct Home: View {
 struct PantallaHome: View{
     @State var textoBusqueda = ""
     var body: some View{
+        
         ZStack{
             Color("Marine").ignoresSafeArea()
+            ScrollView{
             VStack{
                 Image("04_swiftui-apps-ios-logo-name").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.horizontal, 11)
                 
@@ -61,13 +64,51 @@ struct PantallaHome: View{
                         }
                         TextField("", text: $textoBusqueda).foregroundColor(.white)
                     }
+                    
                 }.padding([.top, .leading, .bottom], 11).background(Color("Blue-Grey")).clipShape(Capsule())
+                SubModuloHome()
             }.padding(.horizontal, 10)
+                
+            }
         }.navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
     
     func busqueda() {
         print("El usuario esta busacando \(textoBusqueda)")
+    }
+}
+
+struct SubModuloHome: View{
+    @State var url = "https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4"
+    @State var isPlayerActive = false
+    let urlVideos:[String] = ["https://cdn.cloudflare.steamstatic.com/steam/apps/256658589/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256671638/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256720061/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256814567/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256705156/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256801252/movie480.mp4","https://cdn.cloudflare.steamstatic.com/steam/apps/256757119/movie480.mp4"]
+    
+    
+    var body: some View{
+        VStack{
+            Text("LOS MÁS POPULARES").font(.title3).foregroundColor(.white).bold().frame( minWidth: 0, maxWidth: .infinity, alignment: .leading).padding(.top)
+            ZStack{
+                Button(action: {
+                    url = urlVideos[0]
+                    print("URL: \(url)")
+                    isPlayerActive = true
+                }, label: {
+                    VStack(spacing: 0){
+                        Image("13-swiftuiapps-2105-thewitcher").resizable().scaledToFill()
+                        Text("The Witcher 3").frame(minWidth: 0, maxWidth: .infinity, alignment: .leading).background(Color("Blue-Grey"))
+                    }
+                })
+                Image(systemName: "play.circle.fill").resizable().foregroundColor(.white).frame(width: 42, height: 42)
+            }.frame( minWidth: 0, maxWidth: .infinity, alignment: .center).padding(.vertical)
+        }
+        
+        NavigationLink(
+            destination: VideoPlayer(player: AVPlayer(url: URL(string: url)!)).frame(width: 400, height: 300),
+            isActive: $isPlayerActive,
+            label: {
+                EmptyView()
+            })
+        
     }
 }
 
