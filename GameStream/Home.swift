@@ -100,6 +100,99 @@ struct SubModuloHome: View{
                 })
                 Image(systemName: "play.circle.fill").resizable().foregroundColor(.white).frame(width: 42, height: 42)
             }.frame( minWidth: 0, maxWidth: .infinity, alignment: .center).padding(.vertical)
+            
+            Text("CATEGORIAS SUGERIDAS PARA TI").font(.title3).foregroundColor(.white).bold().frame( minWidth: 0, maxWidth: .infinity, alignment: .leading).padding(.vertical)
+            
+            ScrollView(.horizontal, showsIndicators: false){
+                HStack{
+                    Button(action: {
+                        print("RPG")
+                    }, label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 160, height: 90)
+                            Image("rpg-icon").resizable().scaledToFit().frame(width: 42, height: 42)
+                        }
+                    })
+                    
+                    Button(action: {
+                        print("Shooter")
+                    }, label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 160, height: 90)
+                            Image("Vector-shot").resizable().scaledToFit().frame(width: 42, height: 42)
+                        }
+                    })
+                    
+                    Button(action: {
+                        print("OPEN WORLD")
+                    }, label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 160, height: 90)
+                            Image("open-world-icon").resizable().scaledToFit().frame(width: 42, height: 42)
+                        }
+                    })
+                }
+            }
+            
+            Text("RECOMENDADOS PARA TI").font(.title3).foregroundColor(.white).bold().frame( minWidth: 0, maxWidth: .infinity, alignment: .leading).padding(.vertical)
+            
+            ScrollView(.horizontal, showsIndicators: false){
+                HStack{
+                    Button(action: {
+                        url = urlVideos[1]
+                        print("URL: \(url)")
+                        isPlayerActive = true
+                    }, label: {
+                        Image("13-swiftuiapps-2105-assassins_creed").resizable().scaledToFit().frame(width: 240, height: 135)
+                    })
+                    
+                    Button(action: {
+                        url = urlVideos[2]
+                        print("URL: \(url)")
+                        isPlayerActive = true
+                    }, label: {
+                        Image("13-swiftuiapps-2105-spiderman").resizable().scaledToFit().frame(width: 240, height: 135)
+                    })
+                    
+                    Button(action: {
+                        url = urlVideos[3]
+                        print("URL: \(url)")
+                        isPlayerActive = true
+                    }, label: {
+                        Image("13-swiftuiapps-2105-lastofus").resizable().scaledToFit().frame(width: 240, height: 135)
+                    })
+                }
+            }
+            
+            Text("VIDEOS QUE PODRIAN GUSTARTE").font(.title3).foregroundColor(.white).bold().frame( minWidth: 0, maxWidth: .infinity, alignment: .leading).padding(.vertical)
+            
+            ScrollView(.horizontal, showsIndicators: false){
+                HStack{
+                    Button(action: {
+                        url = urlVideos[4]
+                        print("URL: \(url)")
+                        isPlayerActive = true
+                    }, label: {
+                        Image("13-swiftuiapps-2105-battkefield").resizable().scaledToFit().frame(width: 240, height: 135)
+                    })
+                    
+                    Button(action: {
+                        url = urlVideos[5]
+                        print("URL: \(url)")
+                        isPlayerActive = true
+                    }, label: {
+                        Image("13-swiftuiapps-2105-farcry4").resizable().scaledToFit().frame(width: 240, height: 135)
+                    })
+                    
+                    Button(action: {
+                        url = urlVideos[6]
+                        print("URL: \(url)")
+                        isPlayerActive = true
+                    }, label: {
+                        Image("13-swiftuiapps-2105-titanfall2").resizable().scaledToFit().frame(width: 240, height: 135)
+                    })
+                }
+            }
         }
         
         NavigationLink(
