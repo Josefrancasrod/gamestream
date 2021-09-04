@@ -18,7 +18,7 @@ struct Home: View {
                 Text("Perfil")
             }.tag(0)
             
-            Text("Pantalla Juegos").font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
+            GamesView().font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
                 Image(systemName: "gamecontroller")
                 Text("Juegos")
             }.tag(1)
