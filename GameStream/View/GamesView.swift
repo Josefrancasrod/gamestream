@@ -50,6 +50,8 @@ struct GamesView: View {
                                 
                                 print("Pulse el juego \(titulo)")
                                 
+                                gameViewIsActive = true
+                                
                             }, label: {
                                 KFImage(URL(string: juego.galleryImages[0])!).resizable().aspectRatio(contentMode: .fit).clipShape(RoundedRectangle.init(cornerRadius: 4)).padding(.bottom, 12)
                             })
@@ -57,6 +59,14 @@ struct GamesView: View {
                     }
                 }
             }.padding(.horizontal, 6)
+            
+            NavigationLink(
+                destination: GameView(url: url, titulo: titulo, studio: studio, calificacion: calificacion, anioPublicacion: anioPublicacion, descripcion: descripcion, tags: tags, imggUrl: imggUrl),
+                isActive: $gameViewIsActive,
+                label: {
+                    EmptyView()
+                })
+            
         }.navigationBarHidden(true).navigationBarBackButtonHidden(true).onAppear(
             perform: {
                 //print("Primer elemento del json: \(todosLosVideojuegos.gamesInfo[0])")
