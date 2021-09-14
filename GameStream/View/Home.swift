@@ -13,7 +13,7 @@ struct Home: View {
     var body: some View {
         TabView (selection: $tabSeleccionado){
             
-            Text("Pantalla Perfil").font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
+            Text("Perfil").font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
                 Image(systemName: "person")
                 Text("Perfil")
             }.tag(0)
@@ -28,7 +28,7 @@ struct Home: View {
                 Text("Home")
             }.tag(2)
             
-            Text("Pantalla Favoritos").font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
+            FavoritesView().font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
                 Image(systemName: "star")
                 Text("Favoritos")
             }.tag(3)
