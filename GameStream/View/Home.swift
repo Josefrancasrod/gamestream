@@ -13,7 +13,7 @@ struct Home: View {
     var body: some View {
         TabView (selection: $tabSeleccionado){
             
-            Text("Perfil").font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
+            ProfileView().font(.system(size: 30, weight: .bold, design: .rounded)).tabItem {
                 Image(systemName: "person")
                 Text("Perfil")
             }.tag(0)
