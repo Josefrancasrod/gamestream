@@ -39,7 +39,12 @@ struct ProfileView_Previews: PreviewProvider {
 }
 
 struct ModuloAjustes:View {
+    
+    @State var isToggleOn = true
+    @State var isEditProfileViewActive = false
     var body: some View{
-        Text("Modulo")
+        VStack{
+            
+        }
     }
 }
