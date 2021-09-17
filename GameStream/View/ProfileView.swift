@@ -43,8 +43,44 @@ struct ModuloAjustes:View {
     @State var isToggleOn = true
     @State var isEditProfileViewActive = false
     var body: some View{
-        VStack{
+        VStack(spacing: 3.0){
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                HStack {
+                    Text("Cuenta").foregroundColor(.white)
+                    Spacer()
+                    Image(systemName: "chevron.right") .foregroundColor(.white)
+                }.padding()
+            }).background(Color("Blue-Grey")).clipShape(RoundedRectangle(cornerRadius: 1.0))
+            Button(action: {}, label: {
+                HStack {
+                    Text("Notificaciones").foregroundColor(.white)
+                    Spacer()
+                    Toggle("", isOn: $isToggleOn)
+                }.padding()
+            }).background(Color("Blue-Grey")).clipShape(RoundedRectangle(cornerRadius: 1.0))
+            Button(action: {
+                isEditProfileViewActive = true
+            }, label: {
+                HStack {
+                    Text("Editar Perfil").foregroundColor(.white)
+                    Spacer()
+                    Image(systemName: "chevron.right") .foregroundColor(.white)
+                }.padding()
+            }).background(Color("Blue-Grey")).clipShape(RoundedRectangle(cornerRadius: 1.0))
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                HStack {
+                    Text("Califica Esta Aplicación").foregroundColor(.white)
+                    Spacer()
+                    Image(systemName: "chevron.right") .foregroundColor(.white)
+                }.padding()
+            }).background(Color("Blue-Grey")).clipShape(RoundedRectangle(cornerRadius: 1.0))
             
+            NavigationLink(
+                destination: EditProfileView(),
+                isActive: $isEditProfileViewActive,
+                label: {
+                    /*@START_MENU_TOKEN@*/Text("Navigate")/*@END_MENU_TOKEN@*/
+                })
         }
     }
 }
