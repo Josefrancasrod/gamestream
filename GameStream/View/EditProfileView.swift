@@ -36,7 +36,50 @@ struct EditProfileView_Previews: PreviewProvider {
 }
 
 struct ModuloEditar:View {
+    @State var correo:String = ""
+    @State var contrasenia:String = ""
+    @State var username: String = ""
     var body: some View{
-        Text("Modulo Editar")
+        
+        
+        VStack(alignment: .leading) {
+            Text("Correo electrónico").foregroundColor(Color("Dark-Cian"))
+            ZStack(alignment: .leading){
+                if correo.isEmpty{
+                    Text("ejemplo@mail.com").font(.caption).foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                }
+                TextField("", text: $correo).foregroundColor(.white)
+                
+            }
+            Divider().frame(height:1.0).background(Color("Dark-Cian"))
+            Text("Contraseña").foregroundColor(Color(.white))
+            ZStack(alignment: .leading){
+                if correo.isEmpty{
+                    Text("Introduce tu contraseña").font(.caption).foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                }
+                SecureField("", text: $contrasenia)
+                
+            }
+            Divider().frame(height:1.0).background(Color("Dark-Cian")).foregroundColor(.white)
+            Text("Nombre de Usuario").foregroundColor(Color("Dark-Cian"))
+            ZStack(alignment: .leading){
+                if correo.isEmpty{
+                    Text("Introduce tu usuario").font(.caption).foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                }
+                TextField("", text: $username).foregroundColor(.white)
+                
+            }
+            Divider().frame(height:1.0).background(Color("Dark-Cian"))
+            
+            Button(action: {actualizarDatos()}, label: {
+                Text("ACTUALIZAR DATOS").fontWeight(.bold).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .center).padding(EdgeInsets(top: 11, leading: 18, bottom: 11, trailing: 18)).overlay(RoundedRectangle(cornerRadius: 6.0).stroke(Color("Dark-Cian"),lineWidth: 3.0).shadow(color: .white, radius: 6))
+            }).padding(.bottom)
+        }.padding(.horizontal, 42.0)
+        
+        
+    }
+    
+    func actualizarDatos() {
+        print("se actualizaron los datos")
     }
 }
