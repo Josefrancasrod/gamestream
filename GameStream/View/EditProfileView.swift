@@ -61,7 +61,7 @@ struct ModuloEditar:View {
                 
             }
             Divider().frame(height:1.0).background(Color("Dark-Cian")).foregroundColor(.white)
-            Text("Nombre de Usuario").foregroundColor(Color("Dark-Cian"))
+            Text("Nombre de Usuario").foregroundColor(.white)
             ZStack(alignment: .leading){
                 if correo.isEmpty{
                     Text("Introduce tu usuario").font(.caption).foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
@@ -80,6 +80,9 @@ struct ModuloEditar:View {
     }
     
     func actualizarDatos() {
-        print("se actualizaron los datos")
+        
+        let objetoActualizadorDatos = SaveData()
+        let resultado = objetoActualizadorDatos.guardarDatos(correo: correo, contrasenia: contrasenia, nombre: username)
+        print("Se guardaron los datos con exito? \(resultado)")
     }
 }
