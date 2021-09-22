@@ -10,6 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     
     @State var nombreUsuario = "José Francisco"
+    @State var imagePerfil:UIImage = UIImage(named: "perfilEjemplo")!
     
     var body: some View {
         ZStack{
@@ -18,7 +19,7 @@ struct ProfileView: View {
                 Text("Perfil").font(.title2).fontWeight(.bold).foregroundColor(Color.white).padding()
                 
                 VStack{
-                    Image("30-swiftui-apps-ios-profile-pic").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/).frame(width: 118, height: 118).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    Image(uiImage: imagePerfil).resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/).frame(width: 118, height: 118).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                     
                 }.padding(EdgeInsets(top: 16, leading: 0, bottom: 32, trailing: 0))
                 Text(nombreUsuario).font(.title2).fontWeight(.bold).foregroundColor(Color.white).padding(.bottom, 9.0)
@@ -28,7 +29,25 @@ struct ProfileView: View {
             }
         }.onAppear(perform: {
             print("Revisando si tiengo datos de usuario en User defaul")
+            if returnUiImage(named: "fotoperfil") != nil {
+                imagePerfil = returnUiImage(named: "fotoperfil")!
+            }else {
+               print("No se encontro foto de perfil")
+            }
+            if UserDefaults.standard.object(forKey: "datosUsuario") != nil {
+                nombreUsuario = UserDefaults.standard.stringArray(forKey: "datosUsuario")![2]
+            }else{
+                print("no se pudo recuperar")
+            }
         })
+    }
+    
+    func returnUiImage(named:String) -> UIImage? {
+        if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false){
+            return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named).path)
+        }
+        
+        return nil
     }
 }
 

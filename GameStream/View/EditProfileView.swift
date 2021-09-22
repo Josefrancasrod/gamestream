@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct EditProfileView: View {
+    
+    @State var imagenPerfil:Image? = Image("30-swiftui-apps-ios-profile-pic")
+    @State var isCameraActive = false
+    
     var body: some View {
         ZStack {
             Color("Marine").ignoresSafeArea()
             ScrollView {
                 VStack {
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    
+                    Button(action: {
+                        isCameraActive = true
+                    }, label: {
                         ZStack {
-                            Image("30-swiftui-apps-ios-profile-pic").resizable().aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/).frame(width: 118, height: 118).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                            imagenPerfil!
+                                .resizable()
+                                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                .frame(width: 118, height: 118)
+                                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                                .sheet(isPresented: $isCameraActive, content: {
+                                    //SUImagePickerView(sourceType: .photoLibrary, image: self.$imagenPerfil, isPresented: $isCameraActive)
+                                    SUImagePickerView(sourceType: .camera, image: self.$imagenPerfil, isPresented: $isCameraActive)
+                                })
                             Image(systemName: "camera").foregroundColor(.white)
                         }
                         
