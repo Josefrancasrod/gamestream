@@ -15,7 +15,7 @@ struct ContentView: View {
                 //Color(.blue).ignoresSafeArea()
                 Color( red: 19/255, green: 30/255, blue: 60/255,opacity: 1.0  ).ignoresSafeArea()
                 VStack{
-                    Image("04_swiftui-apps-ios-logo-name").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 42)
+                    Image("04_swiftui-apps-ios-logo-name").resizable().aspectRatio(contentMode: .fit).frame(width: 250).padding(.bottom, 42).offset(x: 0.0, y: 10.0)
                     InicioYRegistroView()
                 }
                 
@@ -197,7 +197,8 @@ struct InicioYRegistroView:View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Image("04_swiftui-apps-ios-pantalla2").resizable()
+        //Image("04_swiftui-apps-ios-pantalla2").resizable()
         ContentView()
+            .previewDevice("iPad Pro (11-inch) (3rd generation)")
     }
 }
