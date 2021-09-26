@@ -22,6 +22,7 @@ struct OffestPosition: View {
 struct OffestPosition_Previews: PreviewProvider {
     static var previews: some View {
         OffestPosition()
+            .previewDevice("iPod touch (7th generation)")
     }
 }
 

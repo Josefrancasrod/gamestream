@@ -39,6 +39,8 @@ struct ProfileView: View {
             }else{
                 print("no se pudo recuperar")
             }
+        }).onDisappear(perform: {
+            
         })
     }
     
