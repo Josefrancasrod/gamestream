@@ -86,6 +86,8 @@ struct SubModuloHome: View{
     @State var tags: [String] = [""]
     @State var imggUrl: [String] = [""]
     
+    var dispositivo = UIDevice.current.model
+    
     
     var body: some View{
         VStack{
@@ -102,7 +104,7 @@ struct SubModuloHome: View{
                 
                 ZStack(alignment: .leading){
                     if textoBusqueda.isEmpty {
-                        Text("Buscar un video").foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
+                        Text(dispositivo).foregroundColor(Color(red: 174/255, green: 177/255, blue: 185/255, opacity: 1.0))
                     }
                     TextField("", text: $textoBusqueda).foregroundColor(.white)
                 }
@@ -122,34 +124,68 @@ struct SubModuloHome: View{
             Text("CATEGORIAS SUGERIDAS PARA TI").font(.title3).foregroundColor(.white).bold().frame( minWidth: 0, maxWidth: .infinity, alignment: .leading).padding(.vertical)
             
             ScrollView(.horizontal, showsIndicators: false){
-                HStack{
-                    Button(action: {
-                        print("RPG")
-                    }, label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 160, height: 90)
-                            Image("rpg-icon").resizable().scaledToFit().frame(width: 42, height: 42)
-                        }
-                    })
-                    
-                    Button(action: {
-                        print("Shooter")
-                    }, label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 160, height: 90)
-                            Image("Vector-shot").resizable().scaledToFit().frame(width: 42, height: 42)
-                        }
-                    })
-                    
-                    Button(action: {
-                        print("OPEN WORLD")
-                    }, label: {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 160, height: 90)
-                            Image("open-world-icon").resizable().scaledToFit().frame(width: 42, height: 42)
-                        }
-                    })
+                
+                if(dispositivo == "iPad") {
+                    HStack{
+                        Button(action: {
+                            print("RPG")
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 320, height: 180)
+                                Image("rpg-icon").resizable().scaledToFit().frame(width: 84, height: 84)
+                            }
+                        })
+                        
+                        Button(action: {
+                            print("Shooter")
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 320, height: 180)
+                                Image("Vector-shot").resizable().scaledToFit().frame(width: 84, height: 84)
+                            }
+                        })
+                        
+                        Button(action: {
+                            print("OPEN WORLD")
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 320, height: 180)
+                                Image("open-world-icon").resizable().scaledToFit().frame(width: 84, height: 84)
+                            }
+                        })
+                    }
+                }else{
+                    HStack{
+                        Button(action: {
+                            print("RPG")
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 160, height: 90)
+                                Image("rpg-icon").resizable().scaledToFit().frame(width: 42, height: 42)
+                            }
+                        })
+                        
+                        Button(action: {
+                            print("Shooter")
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 160, height: 90)
+                                Image("Vector-shot").resizable().scaledToFit().frame(width: 42, height: 42)
+                            }
+                        })
+                        
+                        Button(action: {
+                            print("OPEN WORLD")
+                        }, label: {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8).fill(Color("Blue-Grey")).frame(width: 160, height: 90)
+                                Image("open-world-icon").resizable().scaledToFit().frame(width: 42, height: 42)
+                            }
+                        })
+                    }
                 }
+                
+                
             }
             
             Text("RECOMENDADOS PARA TI").font(.title3).foregroundColor(.white).bold().frame( minWidth: 0, maxWidth: .infinity, alignment: .leading).padding(.vertical)
@@ -224,5 +260,6 @@ struct SubModuloHome: View{
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
+            .previewDevice("iPad (9th generation)")
     }
 }
